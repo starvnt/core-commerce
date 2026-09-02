@@ -5,20 +5,13 @@ import CustomerDetails from './pages/CustomerDetails';
 
 function CustomerLayout() {
   return (
-    <>
-      <header className="appbar">
-        <div className="brand">StarVnt Core</div>
-        <nav>
-          <Link to="/customers">List</Link>
-          <Link to="/customers/add">Add</Link>
-        </nav>
-      </header>
+    <main className="container">
       <Routes>
         <Route index element={<CustomerList />} />
         <Route path="add" element={<AddCustomer />} />
         <Route path=":id" element={<CustomerDetails />} />
       </Routes>
-    </>
+    </main>
   );
 }
 

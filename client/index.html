@@ -4,7 +4,97 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StarVnt Core</title>
+    <meta name="theme-color" content="#06070B" />
+    <meta name="description" content="StarVnt Core — Premium Event Commerce" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              obsidian: {
+                50:  '#1B1F2A',
+                100: '#141823',
+                200: '#0F131C',
+                300: '#0B0E15',
+                400: '#080A10',
+                500: '#06070B',
+                600: '#040508',
+              },
+              aura: {
+                50:  '#EAF1FE',
+                100: '#CFE0FC',
+                200: '#A6C2F8',
+                300: '#7BA4F3',
+                400: '#4F86EE',
+                500: '#2A78F5',
+                600: '#1E5DD8',
+                700: '#1647A8',
+                800: '#0F3278',
+                900: '#091E48',
+              },
+              gold: {
+                50:  '#FBF3DC',
+                100: '#F5E6B5',
+                200: '#EFD58C',
+                300: '#E2BB55',
+                400: '#D4A847',
+                500: '#B98A2A',
+                600: '#8E6920',
+              },
+              platinum: {
+                50:  '#F7F9FC',
+                100: '#E9EEF6',
+                200: '#CFD8E5',
+                300: '#A9B5C8',
+                400: '#7B8AA3',
+                500: '#57647E',
+                600: '#3B465C',
+              },
+              line:    '#1F2632',
+              muted:   '#7B8AA3',
+            },
+            fontFamily: {
+              sans:    ['Inter', 'system-ui', 'sans-serif'],
+              display: ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
+              mono:    ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+            },
+            borderRadius: {
+              xl2: '20px',
+            },
+            boxShadow: {
+              aura:  '0 0 0 1px rgba(42,120,245,0.35), 0 12px 40px -8px rgba(42,120,245,0.45)',
+              gold:  '0 0 0 1px rgba(212,168,71,0.40), 0 12px 40px -8px rgba(212,168,71,0.40)',
+              glass: '0 1px 0 rgba(255,255,255,0.04) inset, 0 24px 60px -20px rgba(0,0,0,0.6)',
+            },
+            keyframes: {
+              'fade-in':       { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+              'slide-up':      { '0%': { transform: 'translateY(16px)', opacity: 0 }, '100%': { transform: 'translateY(0)', opacity: 1 } },
+              'slide-down':    { '0%': { transform: 'translateY(-12px)', opacity: 0 }, '100%': { transform: 'translateY(0)', opacity: 1 } },
+              'shimmer':       { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+              'pulse-soft':    { '0%,100%': { opacity: 1 }, '50%': { opacity: 0.45 } },
+              'aura-pan':      { '0%,100%': { transform: 'translate(0,0) scale(1)' }, '50%': { transform: 'translate(20px,-10px) scale(1.05)' } },
+              'mesh-drift':    { '0%,100%': { transform: 'translate3d(0,0,0)' }, '50%': { transform: 'translate3d(-30px,20px,0)' } },
+            },
+            animation: {
+              'fade-in':    'fade-in 400ms ease both',
+              'slide-up':   'slide-up 500ms cubic-bezier(.2,.7,.2,1) both',
+              'slide-down': 'slide-down 400ms cubic-bezier(.2,.7,.2,1) both',
+              'shimmer':    'shimmer 2.4s linear infinite',
+              'pulse-soft': 'pulse-soft 2.2s ease-in-out infinite',
+              'aura-pan':   'aura-pan 14s ease-in-out infinite',
+              'mesh-drift': 'mesh-drift 22s ease-in-out infinite',
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="/src/styles.css" />
+    <title>StarVnt Core · Premium Event Commerce</title>
   </head>
   <body>
     <div id="root"></div>

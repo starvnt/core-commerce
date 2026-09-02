@@ -9,6 +9,7 @@ function errorHandler(err, req, res, next) {
   const status = err.statusCode || err.status || 500;
   const payload = {
     success: false,
+    code: err.code || (status >= 500 ? 'INTERNAL_ERROR' : 'BAD_REQUEST'),
     message: err.message || 'Internal server error',
   };
   if (err.details) payload.details = err.details;
@@ -20,9 +21,10 @@ function errorHandler(err, req, res, next) {
 }
 
 class HttpError extends Error {
-  constructor(statusCode, message, details) {
+  constructor(statusCode, message, code, details) {
     super(message);
     this.statusCode = statusCode;
+    this.code = code;
     if (details) this.details = details;
   }
 }

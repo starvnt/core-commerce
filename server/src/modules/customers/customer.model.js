@@ -1,37 +1,14 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-/**
- * Customer model — Day 1 foundation.
- *
- * Fields are intentionally minimal so we can layer Notes, Follow-ups,
- * Activity Timeline, and Status Tracking on later without rewrites.
- */
 const customerSchema = new Schema(
   {
-    customerId: {
-      type: String,
-      required: true,
-      unique: true,
-      index: true,
-    },
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      trim: true,
-      lowercase: true,
-      match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Invalid email address'],
-    },
-    phone: {
-      type: String,
-      trim: true,
-      default: '',
-    },
+    customerId: { type: String, required: true, unique: true, index: true },
+    userId: { type: String, default: null, index: true },
+    organizationId: { type: String, default: null, index: true },
+    name: { type: String, required: true, trim: true },
+    email: { type: String, required: true, lowercase: true, index: true },
+    phone: { type: String, default: '', trim: true },
     status: {
       type: String,
       enum: ['new', 'active', 'inactive', 'archived'],
@@ -43,15 +20,23 @@ const customerSchema = new Schema(
       enum: ['website', 'referral', 'walk_in', 'social', 'other'],
       default: 'website',
     },
-    // Reserved for future sub-resources; intentionally not enforced yet.
-    notes: { type: Array, default: [] },
-    followUps: { type: Array, default: [] },
-    activityTimeline: { type: Array, default: [] },
+    // Customer journey / event context
+    eventType: { type: String, default: '' }, // Wedding, Corporate, etc.
+    eventDate: { type: Date, default: null },
+    venue: { type: String, default: '' },
+    city: { type: String, default: '' },
+    guestCount: { type: Number, default: null },
+    budgetMinor: { type: Number, default: null }, // amount in paise/cents
+    currency: { type: String, default: 'INR' },
+    // First-touch / last-touch attribution
+    firstTouch: { type: Schema.Types.Mixed, default: null },
+    lastTouch: { type: Schema.Types.Mixed, default: null },
+    // Intent score 0-100 (computed by analytics layer)
+    intentScore: { type: Number, default: 0, min: 0, max: 100 },
+    notes: { type: String, default: '' },
+    tags: { type: [String], default: [] },
   },
-  {
-    timestamps: true,
-    versionKey: false,
-  },
+  { timestamps: true, versionKey: false },
 );
 
 customerSchema.set('toJSON', {

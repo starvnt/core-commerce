@@ -1,0 +1,111 @@
+{
+  "runAt": "2026-09-02T21:05:32.888Z",
+  "baseUrl": "http://localhost:5000",
+  "passed": 15,
+  "failed": 0,
+  "results": [
+    {
+      "name": "4a. GET /customers without token → 401",
+      "ok": true,
+      "detail": "got 401"
+    },
+    {
+      "name": "4b. GET /customers with garbage token → 401",
+      "ok": true,
+      "detail": "got 401"
+    },
+    {
+      "name": "4c. CUSTOMER accessing /outbox/stats → 403",
+      "ok": true,
+      "detail": "got 403"
+    },
+    {
+      "name": "4d. ADMIN accessing /outbox/stats → 200",
+      "ok": true,
+      "detail": "got 200"
+    },
+    {
+      "name": "4e. Customer GET non-existent inquiry → 404",
+      "ok": true,
+      "detail": "got 404"
+    },
+    {
+      "name": "1a. Second insert with same eventId rejected",
+      "ok": true,
+      "detail": "code=11000"
+    },
+    {
+      "name": "1b. Activity count unchanged after reprocessing event",
+      "ok": true,
+      "detail": "4 → 4"
+    },
+    {
+      "name": "1c. SKIPPED log row created on re-run",
+      "ok": true,
+      "detail": "idempotencyKey=DAY3-DUP-1788383127275:INQUIRY_CREATED_ACTIVITY:CREATE_ACTIVITY"
+    },
+    {
+      "name": "2a. Event attempts incremented across retries",
+      "ok": true,
+      "detail": "attempts=3"
+    },
+    {
+      "name": "3a. Event reached max-attempts and is marked FAILED",
+      "ok": true,
+      "detail": "status=FAILED"
+    },
+    {
+      "name": "3b. lastError is recorded on the event",
+      "ok": true,
+      "detail": "error=\"Simulated transient failure #3\""
+    },
+    {
+      "name": "3c. Automation failure log rows persisted",
+      "ok": true,
+      "detail": "count=3"
+    },
+    {
+      "name": "5a. Re-processing same FOLLOW_UP_OVERDUE event does not duplicate activity",
+      "ok": true,
+      "detail": "count=1"
+    },
+    {
+      "name": "5b. CREATE_NOTIFICATION runs only once",
+      "ok": true,
+      "detail": "success=1, skipped=1"
+    },
+    {
+      "name": "5c. SKIPPED automation log rows recorded for the second run",
+      "ok": true,
+      "detail": "count=2"
+    }
+  ],
+  "outboxStats": [
+    {
+      "_id": "PROCESSED",
+      "count": 73
+    },
+    {
+      "_id": "PENDING",
+      "count": 1
+    },
+    {
+      "_id": "FAILED",
+      "count": 3
+    }
+  ],
+  "automationLogs": [
+    {
+      "_id": "SUCCESS",
+      "count": 44
+    },
+    {
+      "_id": "FAILED",
+      "count": 19
+    },
+    {
+      "_id": "SKIPPED",
+      "count": 30
+    }
+  ]
+}

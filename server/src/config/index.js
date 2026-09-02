@@ -3,4 +3,6 @@ module.exports = {
   nodeEnv: process.env.NODE_ENV || 'development',
   mongoUri: process.env.MONGO_URI,
   clientOrigin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+  jwtSecret: process.env.JWT_SECRET || 'starvnt-dev-secret-change-in-prod',
+  jwtExpiresIn: process.env.JWT_EXPIRES_IN || '7d',
 };
